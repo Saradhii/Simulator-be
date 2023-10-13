@@ -1,15 +1,17 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import {connection} from "./db/mongodbConnection";
-
+import userRoute from './routes/userRoutes';
+import cors from "cors";
 dotenv.config();
-
 const app: Express = express();
+app.use(cors());
+app.use(express.json());
 const port = process.env.PORT;
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
+  res.send('⚡️ Simulation Backend Server ⚡️');
 });
-
+app.use('/z1',userRoute)
 app.listen(port, async() => {
   try{
     await connection;
