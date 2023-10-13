@@ -18,7 +18,6 @@ const mongodbConnection_1 = require("./db/mongodbConnection");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
-console.log(`${process.env.MONGO_CONNECTION}`);
 app.get('/', (req, res) => {
     res.send('Express + TypeScript Server');
 });
