@@ -16,6 +16,6 @@ const simulatorUserSchema = new Schema<SimulatorUser>({
   },
 });
 
-const SimulatorUserModel = model<SimulatorUser>('SimulatorUser', simulatorUserSchema);
+const SimulatorUserModel = model<SimulatorUser>('simulatorusers', simulatorUserSchema);
 
 export default SimulatorUserModel;

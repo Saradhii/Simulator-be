@@ -11,11 +11,12 @@ export const userLogin = async (req: Request, res: Response) => {
 
   try {
     // Check if the user exists with the provided email and password
+    console.log(email, password);
     const user: SimulatorUser | null = await SimulatorUserModel.findOne({
       email,
       password,
     });
-
+    console.log("user",user);
     if (user) {
       // User found, you can send a success response or perform further actions
       console.log('User email:', email);
