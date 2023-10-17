@@ -1,5 +1,9 @@
 import { Request, Response } from 'express';
 import SimulatorUserModel, { SimulatorUser } from '../../models/userModel';
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const userLogin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -11,15 +15,22 @@ export const userLogin = async (req: Request, res: Response) => {
 
   try {
     // Check if the user exists with the provided email and password
-    console.log(email, password);
+    
+    const passwordMatch = await bcrypt.compare(password, password);
     const user: SimulatorUser | null = await SimulatorUserModel.findOne({
       email,
-      password,
+      passwordMatch,
     });
-    console.log("user",user);
+    
     if (user) {
       // User found, you can send a success response or perform further actions
-      console.log('User email:', email);
+      const token = jwt.sign({ user }, `${process.env.JWT_SECREAT}`, { expiresIn: '1h' });
+      res.cookie('jwt', token, {
+        httpOnly: true,  // Cookie not accessible via client-side scripts
+        secure: process.env.NODE_ENV === 'production',  // Send only over HTTPS in production
+        sameSite: 'strict',  // Limit cookie to same-site requests
+        maxAge: 3600000,  // Expiry time in milliseconds (e.g., 1 hour)
+      });
       return res.status(200).json({ status: 'success', message: 'Login successful' });
     } else {
       // User not found
