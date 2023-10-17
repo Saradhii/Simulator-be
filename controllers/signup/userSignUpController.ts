@@ -17,10 +17,9 @@ export const userSignUp = async (req: Request, res: Response) => {
 
     // Save the user to the database
     await newUser.save();
-
-    res.status(201).send('User registered successfully.');
+    return res.status(200).json({ status: 'success', message: 'User registered successfully.' });
   } catch (error) {
     console.error('Error during user registration:', error);
-    res.status(500).send('An error occurred during registration.');
+    return res.status(500).json({ status: 'failure', error: 'Internal server error' });
   }
 };
