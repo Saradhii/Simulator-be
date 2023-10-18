@@ -15,12 +15,18 @@ export const userLogin = async (req: Request, res: Response) => {
 
   try {
     // Check if the user exists with the provided email and password
-    
-    const passwordMatch = await bcrypt.compare(password, password);
-    const user: SimulatorUser | null = await SimulatorUserModel.findOne({
-      email,
-      passwordMatch,
-    });
+    const user: SimulatorUser | null = await SimulatorUserModel.findOne({ email });
+
+    if (!user) {
+      return res.status(404).send('User not found.');
+    }
+
+    // Compare the provided password with the hashed password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).send('Invalid credentials.');
+    }
     
     if (user) {
       // User found, you can send a success response or perform further actions
