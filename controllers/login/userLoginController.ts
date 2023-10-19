@@ -37,6 +37,7 @@ export const userLogin = async (req: Request, res: Response) => {
         sameSite: 'strict',  // Limit cookie to same-site requests
         maxAge: 3600000,  // Expiry time in milliseconds (e.g., 1 hour)
       });
+      console.log("cookie is set");
       return res.status(200).json({ status: 'success', message: 'Login successful' });
     } else {
       // User not found
