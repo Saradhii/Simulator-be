@@ -3,7 +3,25 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
-export const userDetails = (req: Request, res: Response, next: NextFunction): void => {
+interface User {
+  email: string;
+  password: string;
+}
+
+// Define your own types for the JWT payload and verification errors
+interface JwtPayload extends jwt.JwtPayload {
+  user?: User;
+}
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: User;
+    }
+  }
+}
+
+export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   const token = req.cookies.jwt;
 
   if (!token) {

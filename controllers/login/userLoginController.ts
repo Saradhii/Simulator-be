@@ -31,6 +31,7 @@ export const userLogin = async (req: Request, res: Response) => {
     if (user) {
       // User found, you can send a success response or perform further actions
       const token = jwt.sign({ user }, `${process.env.JWT_SECREAT}`, { expiresIn: '1h' });
+      console.log("token",token);
       res.cookie('jwt', token, {
         httpOnly: true,  // Cookie not accessible via client-side scripts
         secure: process.env.NODE_ENV === 'production',  // Send only over HTTPS in production
