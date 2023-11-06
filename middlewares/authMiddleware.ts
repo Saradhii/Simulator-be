@@ -9,9 +9,6 @@ interface User {
 }
 
 // Define your own types for the JWT payload and verification errors
-interface JwtPayload extends jwt.JwtPayload {
-  user?: User;
-}
 
 declare global {
   namespace Express {
