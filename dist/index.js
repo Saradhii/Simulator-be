@@ -34,5 +34,5 @@ app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     catch (err) {
         console.log(err);
     }
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+    console.log(`⚡️[server]: Server is running at http://localhost:${port}⚡️`);
 }));
