@@ -29,10 +29,11 @@ export const userLogin = async (req: Request, res: Response) => {
     }
     
     if (user) {
+      const token = jwt.sign({ user }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+      res.cookie('jwt', token, { httpOnly: true, maxAge: 3600000 });
       console.log("cookie is set");
       return res.status(200).json({ status: 'success', message: 'Login successful' });
     } else {
-      // User not found
       return res.status(404).json({ status: 'failure', error: 'User not found' });
     }
   } catch (error) {
