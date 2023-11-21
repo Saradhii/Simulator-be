@@ -26,8 +26,8 @@ const port = process.env.PORT;
 app.get('/', (req, res) => {
     res.send('⚡️ Simulation Backend Server ⚡️');
 });
-app.use('/z1', userRoutes_1.default);
 app.use((0, cookie_parser_1.default)());
+app.use('/z1', userRoutes_1.default);
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield mongodbConnection_1.connection;

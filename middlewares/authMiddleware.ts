@@ -19,8 +19,9 @@ declare global {
 }
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+  console.log(req.cookies,"req.cookies");
   const token = req.cookies.jwt;
-
+  console.log("token",token);
   if (!token) {
     res.status(401).json({ error: 'Access denied, token missing!' });
   } else {

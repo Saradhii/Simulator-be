@@ -12,8 +12,8 @@ const port = process.env.PORT;
 app.get('/', (req: Request, res: Response) => {
   res.send('⚡️ Simulation Backend Server ⚡️');
 });
-app.use('/z1',userRoute);
 app.use(cookieParser());
+app.use('/z1',userRoute);
 app.listen(port, async() => {
   try{
     await connection;
