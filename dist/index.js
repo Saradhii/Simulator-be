@@ -21,11 +21,13 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const port = process.env.PORT;
 app.get('/', (req, res) => {
     res.send('⚡️ Simulation Backend Server ⚡️');
 });
 app.use('/z1', userRoutes_1.default);
+app.use((0, cookie_parser_1.default)());
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield mongodbConnection_1.connection;
