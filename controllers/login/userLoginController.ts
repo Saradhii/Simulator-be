@@ -27,7 +27,6 @@ export const userLogin = async (req: Request, res: Response) => {
     if (!usetDetails) {
       return res.status(401).send('Invalid credentials.');
     }
-    
     if (user) {
       const token = jwt.sign({ user }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
       // res.cookie('jwt', token, { httpOnly: true, maxAge: 3600000, sameSite: 'none', secure: true });
