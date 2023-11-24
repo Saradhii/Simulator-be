@@ -23,14 +23,13 @@ export const userLogin = async (req: Request, res: Response) => {
 
     // Compare the provided password with the hashed password
     const usetDetails = await bcrypt.compare(password, user.password);
-
     if (!usetDetails) {
       return res.status(401).send('Invalid credentials.');
     }
     if (user) {
       const token = jwt.sign({ user }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
       // res.cookie('jwt', token, { httpOnly: true, maxAge: 3600000, sameSite: 'none', secure: true });
-      console.log("jwt is sent");
+      // console.log("jwt is sent");
       return res.status(200).json({ status: 'success', message: 'Login successful',token:token});
     } else {
       // User not found
