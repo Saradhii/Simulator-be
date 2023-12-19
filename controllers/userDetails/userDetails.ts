@@ -1,18 +1,14 @@
 import { Request, Response } from 'express';
 import SimulatorUserModel, { SimulatorUser } from '../../models/userModel';
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
 export const userDetails = async (req: Request, res: Response) => {
   const user = req.user;
-
-  // check if token have a user name
+  // check if token have a user
   if (!user) {
     return res.status(400).json({ status: 'failure', error: 'Email and password are required.' });
   }
-
   try {
     // Check if the user exists with the provided email and password
     const email = user?.email;
