@@ -28,10 +28,8 @@ export const userLogin = async (req: Request, res: Response) => {
     }
     if (user) {
       // genarate jwt token and send it
-      const { password, ...userWithoutPassword } = user;
-      console.log("userWithoutPassword",userWithoutPassword);
-      console.log("userWithoutPassword",userWithoutPassword);
-      const token = jwt.sign({ userWithoutPassword }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+      user.password = "*****";
+      const token = jwt.sign({ user }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
       return res.status(200).json({ status: 'success', message: 'Login successful',token:token});
     } else {
       return res.status(404).json({ status: 'failure', error: 'User not found' });

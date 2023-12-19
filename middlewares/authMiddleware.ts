@@ -31,7 +31,6 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
           res.status(500).json({ error: 'Authentication error' });
         } else if (decodedToken) {
           req.user = decodedToken.user;
-          console.log("user in auth",req.user);
           next();
         }
       });

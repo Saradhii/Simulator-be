@@ -18,6 +18,7 @@ export const userDetails = async (req: Request, res: Response) => {
     }
     if (userData) {
       // User found, you can send a success response or perform further actions
+      userData.password="*****";
       return res.status(200).json({ status: 'success',data:userData, message: 'Login successful' });
     } else {
       // User not found
