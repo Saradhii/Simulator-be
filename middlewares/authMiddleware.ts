@@ -9,6 +9,7 @@ interface User {
 }
 
 // Types for JWT payload and verification errors
+
 declare global {
   namespace Express {
     interface Request {
