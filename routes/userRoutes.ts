@@ -8,3 +8,4 @@ userRoute.post("/userlogin",userLogin);
 userRoute.post("/usersignup",userSignUp);
 userRoute.get("/userdetails",authMiddleware,userDetails);
 export default userRoute;
+
