@@ -6,6 +6,7 @@ export interface SimulatorUser extends Document {
   networth: string;
 }
 
+
 const simulatorUserSchema = new Schema<SimulatorUser>({
   email: {
     type: String,
