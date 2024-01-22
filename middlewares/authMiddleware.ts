@@ -6,7 +6,6 @@ interface User {
   email: string;
   password: string;
 }
-
 // Types for JWT payload and verification errors
 
 declare global {
