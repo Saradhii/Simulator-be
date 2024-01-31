@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import SimulatorUserModel, { SimulatorUser } from '../../models/userModel';
 import dotenv from "dotenv";
 dotenv.config();
-
 export const userDetails = async (req: Request, res: Response) => {
   const user = req.user;
   // check if token have a user
