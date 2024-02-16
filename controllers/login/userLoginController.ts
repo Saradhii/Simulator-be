@@ -5,7 +5,6 @@ dotenv.config();
 import SimulatorUserModel, { SimulatorUser } from '../../models/userModel';
 import bcrypt from "bcrypt";
 
-
 export const userLogin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
