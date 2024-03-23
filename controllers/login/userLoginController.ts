@@ -6,7 +6,6 @@ import SimulatorUserModel, { SimulatorUser } from '../../models/userModel';
 import bcrypt from "bcrypt";
 export const userLogin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
-
   // Validate email and password (you can add more validation logic as needed)
   if (!email || !password) {
     return res.status(400).json({ status: 'failure', error: 'Email and password are required.' });
