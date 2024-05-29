@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import SimulatorUserModel, { SimulatorUser } from '../../models/userModel';
 import bcrypt from "bcrypt";
+
 export const userLogin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   // Validate email and password (you can add more validation logic as needed)
