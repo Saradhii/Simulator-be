@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
+
 import SimulatorUserModel, { SimulatorUser } from '../../models/userModel';
 import bcrypt from "bcrypt";
 export const userLogin = async (req: Request, res: Response) => {
